@@ -1,0 +1,4 @@
+E:\Tugas\Career\KLG\TugasKLG_OenJanJason\TugasKLG_OenJanJason\bin\TugasKLG_OenJanJason.dll
+E:\Tugas\Career\KLG\TugasKLG_OenJanJason\TugasKLG_OenJanJason\bin\TugasKLG_OenJanJason.pdb
+E:\Tugas\Career\KLG\TugasKLG_OenJanJason\TugasKLG_OenJanJason\obj\Debug\TugasKLG_OenJanJason.dll
+E:\Tugas\Career\KLG\TugasKLG_OenJanJason\TugasKLG_OenJanJason\obj\Debug\TugasKLG_OenJanJason.pdb

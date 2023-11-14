@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Database1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="Absen" EntityType="Database1Model.Store.Absen" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Employee" EntityType="Database1Model.Store.Employee" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Absen__nik__0519C6AF" Association="Database1Model.Store.FK__Absen__nik__0519C6AF">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Absen" EntitySet="Absen" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Absen">
+          <Key>
+            <PropertyRef Name="nik" />
+            <PropertyRef Name="tanggal" />
+          </Key>
+          <Property Name="nik" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="tanggal" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="nik" />
+          </Key>
+          <Property Name="nik" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="nama" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Absen__nik__0519C6AF">
+          <End Role="Employee" Type="Database1Model.Store.Employee" Multiplicity="1" />
+          <End Role="Absen" Type="Database1Model.Store.Absen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="nik" />
+            </Principal>
+            <Dependent Role="Absen">
+              <PropertyRef Name="nik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Absens" EntityType="Database1Model.Absen" />
+          <EntitySet Name="Employees" EntityType="Database1Model.Employee" />
+          <AssociationSet Name="FK__Absen__nik__0519C6AF" Association="Database1Model.FK__Absen__nik__0519C6AF">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Absen" EntitySet="Absens" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Absen">
+          <Key>
+            <PropertyRef Name="nik" />
+            <PropertyRef Name="tanggal" />
+          </Key>
+          <Property Name="nik" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="tanggal" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Database1Model.FK__Absen__nik__0519C6AF" FromRole="Absen" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="nik" />
+          </Key>
+          <Property Name="nik" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="nama" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Absens" Relationship="Database1Model.FK__Absen__nik__0519C6AF" FromRole="Employee" ToRole="Absen" />
+        </EntityType>
+        <Association Name="FK__Absen__nik__0519C6AF">
+          <End Role="Employee" Type="Database1Model.Employee" Multiplicity="1" />
+          <End Role="Absen" Type="Database1Model.Absen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="nik" />
+            </Principal>
+            <Dependent Role="Absen">
+              <PropertyRef Name="nik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities">
+          <EntitySetMapping Name="Absens">
+            <EntityTypeMapping TypeName="Database1Model.Absen">
+              <MappingFragment StoreEntitySet="Absen">
+                <ScalarProperty Name="nik" ColumnName="nik" />
+                <ScalarProperty Name="tanggal" ColumnName="tanggal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="Database1Model.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="nik" ColumnName="nik" />
+                <ScalarProperty Name="nama" ColumnName="nama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="Database1Model.Absen" Width="1.5" PointX="3" PointY="0.875" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Employee" Width="1.5" PointX="0.75" PointY="0.875" Height="1.59568359375" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model.FK__Absen__nik__0519C6AF" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.672841796875" />
+          <ConnectorPoint PointX="3" PointY="1.672841796875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

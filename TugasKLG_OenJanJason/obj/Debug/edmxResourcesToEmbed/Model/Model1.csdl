@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Absens" EntityType="Database1Model.Absen" />
+    <EntitySet Name="Employees" EntityType="Database1Model.Employee" />
+    <AssociationSet Name="FK__Absen__nik__0519C6AF" Association="Database1Model.FK__Absen__nik__0519C6AF">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Absen" EntitySet="Absens" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Absen">
+    <Key>
+      <PropertyRef Name="nik" />
+      <PropertyRef Name="tanggal" />
+    </Key>
+    <Property Name="nik" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="tanggal" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Database1Model.FK__Absen__nik__0519C6AF" FromRole="Absen" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="nik" />
+    </Key>
+    <Property Name="nik" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="nama" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Absens" Relationship="Database1Model.FK__Absen__nik__0519C6AF" FromRole="Employee" ToRole="Absen" />
+  </EntityType>
+  <Association Name="FK__Absen__nik__0519C6AF">
+    <End Role="Employee" Type="Database1Model.Employee" Multiplicity="1" />
+    <End Role="Absen" Type="Database1Model.Absen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="nik" />
+      </Principal>
+      <Dependent Role="Absen">
+        <PropertyRef Name="nik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
